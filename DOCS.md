@@ -1,15 +1,15 @@
 ---
-title: Webmius – Web-based SSH Management System
-date: 2026-08-12
+title: VoidSSH – Web-based SSH Management System
+date: 2026-08-30
 ---
 
-# Webmius – Web-based SSH Management System
+# VoidSSH – Web-based SSH Management System
 
 ## Technical Documentation (MVP)
 
 ### 1\. Project Overview
 
-Webmius is a self-hostable web application that allows users to store, manage, and connect to SSH servers from a browser interface. The system is inspired by tools like Termius but focuses on a simplified MVP version suitable for basic remote server management.
+VoidSSH is a self-hostable web application that allows users to store, manage, and connect to SSH servers from a browser interface. The system is inspired by tools like Termius but focuses on a simplified MVP version suitable for basic remote server management.
 
 The application enables users to:
 
@@ -201,4 +201,4 @@ Terminal emulation via xterm.js, SSH key-based authentication, tagging/grouping 
 
 ### 13\. Conclusion
 
-Webmius provides a simple and practical solution for managing SSH connections via a web interface. The MVP focuses on essential functionality while leaving room for future scalability and improvements.
+VoidSSH provides a simple and practical solution for managing SSH connections via a web interface. The MVP focuses on essential functionality while leaving room for future scalability and improvements.
