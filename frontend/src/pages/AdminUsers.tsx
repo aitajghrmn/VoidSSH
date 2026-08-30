@@ -140,4 +140,4 @@ function AdminUsers() {
   )
 }
 
-export default AdminUsers
+export default AdminUser
