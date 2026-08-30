@@ -77,4 +77,4 @@ def update_settings():
         settings.session_timeout_minutes = value
 
     db.session.commit()
-    return jsonify(_settings_to_dict(settings)), 200
+    return jsonify(_settings_to_dict(settings)), 2000
