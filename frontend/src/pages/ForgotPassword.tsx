@@ -84,4 +84,4 @@ function ForgotPassword() {
   )
 }
 
-export default ForgotPasswor
+export default ForgotPassword
