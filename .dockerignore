@@ -1,0 +1,29 @@
+# Environment
+.env
+.env.local
+
+# Git
+.git/
+.gitignore
+
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/.venv/
+**/venv/
+**/.pytest_cache/
+**/.mypy_cache/
+
+# Node / frontend
+**/node_modules/
+**/dist/
+**/build/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Docs (not needed inside images)
+*.md
+LICENSE

@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is([data-mode='dark'], [data-mode='dark'] *));
+
+@import '@skeletonlabs/skeleton';
+@import '@skeletonlabs/skeleton-react';
+@import '@skeletonlabs/skeleton/themes/cerberus';
+
+/* VoidSSH brand override — dark near-black surfaces + neon-green primary */
+[data-theme='cerberus'] {
+  --color-root-bg-light: #f4f6f6;
+  --color-root-bg-dark: #06090a;
+
+  --color-primary-50: #f0fff8;
+  --color-primary-100: #d6ffee;
+  --color-primary-200: #a3ffdb;
+  --color-primary-300: #6effc4;
+  --color-primary-400: #3ff2a6;
+  --color-primary-500: #17e08a;
+  --color-primary-600: #0fbf74;
+  --color-primary-700: #0b9a5e;
+  --color-primary-800: #087249;
+  --color-primary-900: #064f34;
+  --color-primary-950: #032c1d;
+
+  --color-primary-contrast-50: #04150d;
+  --color-primary-contrast-100: #04150d;
+  --color-primary-contrast-200: #04150d;
+  --color-primary-contrast-300: #04150d;
+  --color-primary-contrast-400: #04150d;
+  --color-primary-contrast-500: #f3fff9;
+  --color-primary-contrast-600: #f3fff9;
+  --color-primary-contrast-700: #f3fff9;
+  --color-primary-contrast-800: #f3fff9;
+  --color-primary-contrast-900: #f3fff9;
+  --color-primary-contrast-950: #f3fff9;
+
+  --color-surface-50: #f4f6f6;
+  --color-surface-100: #e6eaea;
+  --color-surface-200: #ccd4d4;
+  --color-surface-300: #a8b4b4;
+  --color-surface-400: #7c8a8a;
+  --color-surface-500: #566464;
+  --color-surface-600: #3a4646;
+  --color-surface-700: #262f2f;
+  --color-surface-800: #171e1e;
+  --color-surface-900: #0d1212;
+  --color-surface-950: #07090a;
+
+  --color-surface-contrast-50: #0d1212;
+  --color-surface-contrast-100: #0d1212;
+  --color-surface-contrast-200: #0d1212;
+  --color-surface-contrast-300: #0d1212;
+  --color-surface-contrast-400: #0d1212;
+  --color-surface-contrast-500: #eef4f4;
+  --color-surface-contrast-600: #eef4f4;
+  --color-surface-contrast-700: #eef4f4;
+  --color-surface-contrast-800: #eef4f4;
+  --color-surface-contrast-900: #eef4f4;
+  --color-surface-contrast-950: #eef4f4;
+}
+
+:root[data-mode='light'] {
+  color-scheme: light;
+}
+:root[data-mode='dark'] {
+  color-scheme: dark;
+}
+:root[data-mode='dark'] a.anchor {
+  color: var(--color-primary-400);
+}
+
+/*
+ * Light mode gets a subtle tiled pattern of small hexagon "crystals" that
+ * echo the Logo shape, at low opacity so it never competes with foreground
+ * content or text contrast. Dark mode stays plain (per request).
+ */
+:root[data-mode='light'] body {
+  background-color: var(--color-root-bg-light);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'%3E%3Cg fill='none' stroke='%2317e08a' stroke-opacity='0.14' stroke-width='1.5'%3E%3Cpath d='M30 4 L52 17 L52 43 L30 56 L8 43 L8 17 Z'/%3E%3Cpath d='M90 56 L112 69 L112 95 L90 108 L68 95 L68 69 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.input,
+.select,
+.textarea {
+  box-shadow: none;
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: var(--color-surface-300-700);
+}
+.input:focus,
+.input:focus-within,
+.input:active,
+.select:focus,
+.select:focus-within,
+.select:active,
+.textarea:focus,
+.textarea:focus-within,
+.textarea:active {
+  border-color: var(--color-primary-500);
+}

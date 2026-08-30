@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-theme="cerberus">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="VoidSSH is a web-based SSH terminal for managing and connecting to your servers from the browser." />
+    <title>VoidSSH</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 2 L44 14 L44 34 L24 46 L4 34 L4 14 Z' fill='none' stroke='%2317e08a' stroke-width='3'/%3E%3Cpath d='M24 12 L34 18 L34 30 L24 36 L14 30 L14 18 Z' fill='%2317e08a'/%3E%3C/svg%3E"
+    />
+    <!-- Matches the VITE_API_URL default in src/api/client.ts / .env.example.
+         Every authenticated page fires /api/me and /api/connections on mount,
+         so warming the TLS/TCP handshake to the backend origin before the API
+         client's JS even runs shaves the connection setup off that request. -->
+    <link rel="preconnect" href="http://localhost:5000" />
+    <script>
+      // Set the color-scheme before first paint so the page never flashes the
+      // wrong mode while React boots. Kept in sync with src/theme/ThemeContext.tsx.
+      ;(function () {
+        var stored = localStorage.getItem('webmius-theme-mode')
+        var mode =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+        document.documentElement.dataset.mode = mode
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

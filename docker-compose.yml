@@ -1,0 +1,63 @@
+services:
+  db:
+    image: docker.io/library/postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    environment:
+      FLASK_ENV: ${FLASK_ENV:-production}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      SECRET_KEY: ${SECRET_KEY}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:5000}
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+  # "prod-like" profile: a TLS-terminating reverse proxy in front of the dev
+  # services, for exercising HTTPS/Secure-cookie behavior locally. Not part
+  # of the default `podman compose up`. See README for usage.
+  proxy:
+    image: docker.io/library/caddy:2-alpine
+    profiles: ["prod"]
+    environment:
+      PROXY_DOMAIN: ${PROXY_DOMAIN:-localhost}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro,z
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      # Rootless Podman can't bind :443 without a sysctl change, so the host
+      # port defaults higher; a rootful/production host can override this to
+      # 443 via PROXY_PORT.
+      - "${PROXY_PORT:-8443}:443"
+
+volumes:
+  db_data:
+  caddy_data:
+  caddy_config:

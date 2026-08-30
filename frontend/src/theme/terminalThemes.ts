@@ -1,0 +1,221 @@
+import type { ITheme } from '@xterm/xterm'
+
+export interface TerminalThemeOption {
+  id: string
+  label: string
+  theme: ITheme
+}
+
+export const DEFAULT_TERMINAL_THEME_ID = 'default-dark'
+
+export const TERMINAL_THEMES: TerminalThemeOption[] = [
+  {
+    id: 'default-dark',
+    label: 'Default dark',
+    theme: {
+      background: '#0a0a0a',
+      foreground: '#e4e4e4',
+      cursor: '#e4e4e4',
+      selectionBackground: '#3b82f680',
+      black: '#0a0a0a',
+      red: '#f38ba8',
+      green: '#a6e3a1',
+      yellow: '#f9e2af',
+      blue: '#89b4fa',
+      magenta: '#f5c2e7',
+      cyan: '#94e2d5',
+      white: '#e4e4e4',
+      brightBlack: '#585b70',
+      brightRed: '#f38ba8',
+      brightGreen: '#a6e3a1',
+      brightYellow: '#f9e2af',
+      brightBlue: '#89b4fa',
+      brightMagenta: '#f5c2e7',
+      brightCyan: '#94e2d5',
+      brightWhite: '#ffffff',
+    },
+  },
+  {
+    id: 'light',
+    label: 'Light',
+    theme: {
+      background: '#ffffff',
+      foreground: '#1f1f1f',
+      cursor: '#1f1f1f',
+      selectionBackground: '#93c5fd80',
+      black: '#1f1f1f',
+      red: '#d32f2f',
+      green: '#2e7d32',
+      yellow: '#f9a825',
+      blue: '#1565c0',
+      magenta: '#8e24aa',
+      cyan: '#00838f',
+      white: '#e0e0e0',
+      brightBlack: '#616161',
+      brightRed: '#ef5350',
+      brightGreen: '#66bb6a',
+      brightYellow: '#ffca28',
+      brightBlue: '#42a5f5',
+      brightMagenta: '#ab47bc',
+      brightCyan: '#26c6da',
+      brightWhite: '#ffffff',
+    },
+  },
+  {
+    id: 'solarized-dark',
+    label: 'Solarized dark',
+    theme: {
+      background: '#002b36',
+      foreground: '#839496',
+      cursor: '#839496',
+      selectionBackground: '#586e7580',
+      black: '#073642',
+      red: '#dc322f',
+      green: '#859900',
+      yellow: '#b58900',
+      blue: '#268bd2',
+      magenta: '#d33682',
+      cyan: '#2aa198',
+      white: '#eee8d5',
+      brightBlack: '#002b36',
+      brightRed: '#cb4b16',
+      brightGreen: '#586e75',
+      brightYellow: '#657b83',
+      brightBlue: '#839496',
+      brightMagenta: '#6c71c4',
+      brightCyan: '#93a1a1',
+      brightWhite: '#fdf6e3',
+    },
+  },
+  {
+    id: 'solarized-light',
+    label: 'Solarized light',
+    theme: {
+      background: '#fdf6e3',
+      foreground: '#657b83',
+      cursor: '#657b83',
+      selectionBackground: '#93a1a180',
+      black: '#073642',
+      red: '#dc322f',
+      green: '#859900',
+      yellow: '#b58900',
+      blue: '#268bd2',
+      magenta: '#d33682',
+      cyan: '#2aa198',
+      white: '#eee8d5',
+      brightBlack: '#002b36',
+      brightRed: '#cb4b16',
+      brightGreen: '#586e75',
+      brightYellow: '#657b83',
+      brightBlue: '#839496',
+      brightMagenta: '#6c71c4',
+      brightCyan: '#93a1a1',
+      brightWhite: '#fdf6e3',
+    },
+  },
+  {
+    id: 'dracula',
+    label: 'Dracula',
+    theme: {
+      background: '#282a36',
+      foreground: '#f8f8f2',
+      cursor: '#f8f8f2',
+      selectionBackground: '#44475a',
+      black: '#21222c',
+      red: '#ff5555',
+      green: '#50fa7b',
+      yellow: '#f1fa8c',
+      blue: '#bd93f9',
+      magenta: '#ff79c6',
+      cyan: '#8be9fd',
+      white: '#f8f8f2',
+      brightBlack: '#6272a4',
+      brightRed: '#ff6e6e',
+      brightGreen: '#69ff94',
+      brightYellow: '#ffffa5',
+      brightBlue: '#d6acff',
+      brightMagenta: '#ff92df',
+      brightCyan: '#a4ffff',
+      brightWhite: '#ffffff',
+    },
+  },
+  {
+    id: 'monokai',
+    label: 'Monokai',
+    theme: {
+      background: '#272822',
+      foreground: '#f8f8f2',
+      cursor: '#f8f8f0',
+      selectionBackground: '#49483e',
+      black: '#272822',
+      red: '#f92672',
+      green: '#a6e22e',
+      yellow: '#f4bf75',
+      blue: '#66d9ef',
+      magenta: '#ae81ff',
+      cyan: '#a1efe4',
+      white: '#f8f8f2',
+      brightBlack: '#75715e',
+      brightRed: '#f92672',
+      brightGreen: '#a6e22e',
+      brightYellow: '#f4bf75',
+      brightBlue: '#66d9ef',
+      brightMagenta: '#ae81ff',
+      brightCyan: '#a1efe4',
+      brightWhite: '#f9f8f5',
+    },
+  },
+  {
+    id: 'one-dark',
+    label: 'One Dark',
+    theme: {
+      background: '#282c34',
+      foreground: '#abb2bf',
+      cursor: '#abb2bf',
+      selectionBackground: '#3e4451',
+      black: '#282c34',
+      red: '#e06c75',
+      green: '#98c379',
+      yellow: '#e5c07b',
+      blue: '#61afef',
+      magenta: '#c678dd',
+      cyan: '#56b6c2',
+      white: '#abb2bf',
+      brightBlack: '#5c6370',
+      brightRed: '#e06c75',
+      brightGreen: '#98c379',
+      brightYellow: '#e5c07b',
+      brightBlue: '#61afef',
+      brightMagenta: '#c678dd',
+      brightCyan: '#56b6c2',
+      brightWhite: '#ffffff',
+    },
+  },
+]
+
+export function getTerminalTheme(id: string): ITheme {
+  return (TERMINAL_THEMES.find((t) => t.id === id) ?? TERMINAL_THEMES[0]).theme
+}
+
+export const DEFAULT_TERMINAL_FONT_FAMILY = 'Menlo, Consolas, "Liberation Mono", monospace'
+
+// Fonts beyond the system stack aren't bundled with the app — they only
+// render if the browser can resolve them from fonts already installed on
+// the user's machine, otherwise the trailing fallback stack takes over.
+export const TERMINAL_FONT_FAMILIES: { label: string; value: string }[] = [
+  { label: 'System monospace', value: DEFAULT_TERMINAL_FONT_FAMILY },
+  { label: 'Fira Code', value: '"Fira Code", Menlo, Consolas, monospace' },
+  { label: 'JetBrains Mono', value: '"JetBrains Mono", Menlo, Consolas, monospace' },
+  { label: 'Cascadia Code', value: '"Cascadia Code", Menlo, Consolas, monospace' },
+  { label: 'Source Code Pro', value: '"Source Code Pro", Menlo, Consolas, monospace' },
+  { label: 'Ubuntu Mono', value: '"Ubuntu Mono", Menlo, Consolas, monospace' },
+  { label: 'Courier New', value: '"Courier New", Courier, monospace' },
+]
+
+export type TerminalCursorStyle = 'block' | 'underline' | 'bar'
+
+export const TERMINAL_CURSOR_STYLES: { label: string; value: TerminalCursorStyle }[] = [
+  { label: 'Block', value: 'block' },
+  { label: 'Underline', value: 'underline' },
+  { label: 'Bar', value: 'bar' },
+]

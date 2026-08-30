@@ -1,0 +1,17 @@
+services:
+  db:
+    ports:
+      - "5432:5432"
+
+  backend:
+    volumes:
+      - ./backend:/app:z
+    environment:
+      FLASK_ENV: development
+    command: python wsgi.py
+
+  frontend:
+    volumes:
+      - ./frontend:/app:z
+      - /app/node_modules
+    command: pnpm run dev
