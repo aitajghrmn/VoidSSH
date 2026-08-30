@@ -39,4 +39,4 @@ function Logo({ size = 40, showText = true, className = '' }: LogoProps) {
   )
 }
 
-export default Logo
+export default Logon
