@@ -122,7 +122,7 @@ VoidSSH follows a straightforward client-server architecture:
 
 ```bash
 # Clone the repository
-git clone https://github.com/aitajghrmn/VoidSsh.git
+git clone https://github.com/aitajghrmn/VoidSSH.git
 cd voidssh
 
 # Configure environment variables
