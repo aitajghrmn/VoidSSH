@@ -2,13 +2,13 @@ services:
   db:
     image: docker.io/library/postgres:16-alpine
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:-voidssh}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-voidssh}
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-voidssh}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -17,9 +17,9 @@ services:
     build: ./backend
     environment:
       FLASK_ENV: ${FLASK_ENV:-production}
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-      SECRET_KEY: ${SECRET_KEY}
-      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-voidssh}:${POSTGRES_PASSWORD:-changeme}@db:5432/${POSTGRES_DB:-voidssh}
+      SECRET_KEY: ${SECRET_KEY:-insecure-dev-secret-change-me}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-insecure-dev-encryption-key-change-me}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
     depends_on:
       db:
