@@ -1,16 +1,13 @@
 FROM python:3.12-slim
-
 WORKDIR /app
-
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
 COPY . .
-
 ENV FLASK_APP=wsgi.py
-
 EXPOSE 5000
-
+# Convert CRLF -> LF at build time as a safety net, in case the file was
+# checked out with Windows line endings (autocrlf=true) on the host.
+RUN sed -i 's/\r$//' entrypoint.sh
 # Invoked via `sh` rather than relying on the executable bit: the dev compose
 # override bind-mounts the host ./backend directory over /app, and a
 # checked-out file's mode (not the image's RUN chmod) wins once that happens.
