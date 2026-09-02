@@ -20,7 +20,7 @@ function writeStoredMode(mode: ThemeMode): void {
   try {
     localStorage.setItem(STORAGE_KEY, mode)
   } catch {
-    // igno
+    // ignore
   }
 }
 
