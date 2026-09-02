@@ -1,7 +1,7 @@
 import type { ITheme } from '@xterm/xterm'
 
 export interface TerminalThemeOption {
-  id: int
+  id: string
   label: string
   theme: ITheme
 }
