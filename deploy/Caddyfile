@@ -6,7 +6,7 @@
 	}
 
 	handle /socket.io/* {
-		reverse_proxy backend:5000
+		reverse_proxy backend:500
 	}
 
 	handle {
