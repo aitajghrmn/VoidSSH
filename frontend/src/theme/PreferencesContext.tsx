@@ -119,7 +119,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
 export function usePreferences(): PreferencesContextValue {
   const ctx = useContext(PreferencesContext)
   if (!ctx) throw new Error('usePreferences must be used within a PreferencesProvider')
-  return ct
+  return ctx
 }
 
 export { MIN_FONT_SIZE, MAX_FONT_SIZE }
