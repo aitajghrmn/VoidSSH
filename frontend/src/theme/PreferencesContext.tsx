@@ -12,7 +12,7 @@ const THEME_ID_KEY = 'webmius-terminal-theme'
 const FONT_FAMILY_KEY = 'webmius-terminal-font-family'
 const CURSOR_STYLE_KEY = 'webmius-terminal-cursor-style'
 
-const DEFAULT_FONT_SIZE = 14
+const DEFAULT_FONT_SIZE = 10
 const MIN_FONT_SIZE = 10
 const MAX_FONT_SIZE = 24
 
