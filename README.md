@@ -175,7 +175,7 @@ Configuration is managed through a `.env` file at the project root. At minimum, 
 | `FERNET_KEY`               | Encryption key used to secure stored SSH credentials     |
 | `VITE_API_URL`             | Base URL the frontend uses to reach the backend API      |
 
-> ⚠️ Never commit your `.env` file. Use `.env.example` as a reference and keep real secrets out of version control.
+
 
 ## Security
 
