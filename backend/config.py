@@ -12,9 +12,20 @@ def _bool_env(name, default):
     return value.strip().lower() in ("1", "true", "yes", "on")
 
 
+def _database_url():
+    url = os.environ.get("DATABASE_URL")
+    if not url:
+        return url
+    if url.startswith("postgres://"):
+        return "postgresql+psycopg2://" + url[len("postgres://") :]
+    if url.startswith("postgresql://"):
+        return "postgresql+psycopg2://" + url[len("postgresql://") :]
+    return url
+
+
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY")
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = _database_url()
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ENCRYPTION_KEY = os.environ.get("ENCRYPTION_KEY")
     CORS_ORIGINS = _parse_origins(os.environ.get("CORS_ORIGINS", "http://localhost:5173"))

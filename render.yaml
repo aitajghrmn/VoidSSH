@@ -22,12 +22,3 @@ services:
         value: "true"
       - key: SESSION_COOKIE_SAMESITE
         value: "None"
-
-  - type: web
-    name: voidssh-frontend
-    runtime: static
-    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm run build
-    staticPublishPath: ./frontend/dist
-    envVars:
-      - key: VITE_API_URL
-        sync: false

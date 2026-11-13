@@ -167,19 +167,17 @@ pnpm dev
 ### Free-tier deployment (Render + Neon)
 
 For a simple public demo, deploy the backend as a Render Web Service, the
-frontend as a Render Static Site, and use a Neon PostgreSQL database. The
-repository includes a `render.yaml` Blueprint for these two Render services.
+frontend separately on Cloudflare Pages, and use a Neon PostgreSQL database.
+The repository includes a `render.yaml` Blueprint for the backend service.
 
 1. Create a Neon project and copy its pooled PostgreSQL connection string.
 2. In Render, choose **New → Blueprint**, select this repository, and apply
    `render.yaml`.
 3. Set `DATABASE_URL` on `voidssh-api` to the Neon connection string.
-4. After the frontend service receives its `onrender.com` URL, set these
-   variables:
-   - `VITE_API_URL` on `voidssh-frontend` to the backend URL.
-   - `CORS_ORIGINS` and `FRONTEND_URL` on `voidssh-api` to the frontend URL.
-   - Keep `SESSION_COOKIE_SECURE=true` and set `SESSION_COOKIE_SAMESITE=None`.
-5. Redeploy the frontend after setting `VITE_API_URL`.
+4. Deploy the `frontend` directory separately on Cloudflare Pages.
+5. After the frontend receives its `pages.dev` URL, set `CORS_ORIGINS` and
+   `FRONTEND_URL` on `voidssh-api` to that URL. Keep
+   `SESSION_COOKIE_SECURE=true` and set `SESSION_COOKIE_SAMESITE=None`.
 
 Render's free web services sleep after inactivity, so the first request can
 take about a minute and open terminal sessions may be interrupted. Neon Free
