@@ -20,6 +20,8 @@ services:
         sync: false
       - key: SESSION_COOKIE_SECURE
         value: "true"
+      - key: SESSION_COOKIE_SAMESITE
+        value: "None"
 
   - type: web
     name: voidssh-frontend

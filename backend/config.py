@@ -19,11 +19,10 @@ class Config:
     ENCRYPTION_KEY = os.environ.get("ENCRYPTION_KEY")
     CORS_ORIGINS = _parse_origins(os.environ.get("CORS_ORIGINS", "http://localhost:5173"))
 
-    # Cookies are HttpOnly + SameSite=Lax by default; Secure requires HTTPS,
-    # which only the M6 reverse-proxy ("prod" compose profile) provides, so
-    # it's opt-out via env rather than hardcoded per environment.
+    # Use SameSite=None for cross-origin deployments where the frontend and
+    # backend are hosted on different domains (for example Pages + Render).
     SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = "Lax"
+    SESSION_COOKIE_SAMESITE = os.environ.get("SESSION_COOKIE_SAMESITE", "Lax")
     SESSION_COOKIE_SECURE = _bool_env("SESSION_COOKIE_SECURE", True)
 
     RATELIMIT_ENABLED = True

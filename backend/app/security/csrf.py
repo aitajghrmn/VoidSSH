@@ -54,7 +54,7 @@ def register_csrf_protection(app):
                 CSRF_COOKIE_NAME,
                 token,
                 httponly=False,
-                samesite="Lax",
+                samesite=app.config.get("SESSION_COOKIE_SAMESITE", "Lax"),
                 secure=app.config.get("SESSION_COOKIE_SECURE", False),
             )
         return response

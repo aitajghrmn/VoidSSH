@@ -178,6 +178,7 @@ repository includes a `render.yaml` Blueprint for these two Render services.
    variables:
    - `VITE_API_URL` on `voidssh-frontend` to the backend URL.
    - `CORS_ORIGINS` and `FRONTEND_URL` on `voidssh-api` to the frontend URL.
+   - Keep `SESSION_COOKIE_SECURE=true` and set `SESSION_COOKIE_SAMESITE=None`.
 5. Redeploy the frontend after setting `VITE_API_URL`.
 
 Render's free web services sleep after inactivity, so the first request can
