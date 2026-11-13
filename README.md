@@ -164,6 +164,27 @@ pnpm dev
 
 </details>
 
+### Free-tier deployment (Render + Neon)
+
+For a simple public demo, deploy the backend as a Render Web Service, the
+frontend as a Render Static Site, and use a Neon PostgreSQL database. The
+repository includes a `render.yaml` Blueprint for these two Render services.
+
+1. Create a Neon project and copy its pooled PostgreSQL connection string.
+2. In Render, choose **New → Blueprint**, select this repository, and apply
+   `render.yaml`.
+3. Set `DATABASE_URL` on `voidssh-api` to the Neon connection string.
+4. After the frontend service receives its `onrender.com` URL, set these
+   variables:
+   - `VITE_API_URL` on `voidssh-frontend` to the backend URL.
+   - `CORS_ORIGINS` and `FRONTEND_URL` on `voidssh-api` to the frontend URL.
+5. Redeploy the frontend after setting `VITE_API_URL`.
+
+Render's free web services sleep after inactivity, so the first request can
+take about a minute and open terminal sessions may be interrupted. Neon Free
+also scales its database to zero after inactivity; this setup is suitable for
+testing and small demos, not latency-sensitive production use.
+
 ## Environment Variables
 
 Configuration is managed through a `.env` file at the project root. At minimum, you'll want to set:

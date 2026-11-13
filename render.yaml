@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: voidssh-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: SESSION_COOKIE_SECURE
+        value: "true"
+
+  - type: web
+    name: voidssh-frontend
+    runtime: static
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
