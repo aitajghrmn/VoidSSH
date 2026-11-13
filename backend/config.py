@@ -16,6 +16,8 @@ def _database_url():
     url = os.environ.get("DATABASE_URL")
     if not url:
         return url
+    if url.startswith("postgresql+psycopg://"):
+        return "postgresql+psycopg2://" + url[len("postgresql+psycopg://") :]
     if url.startswith("postgres://"):
         return "postgresql+psycopg2://" + url[len("postgres://") :]
     if url.startswith("postgresql://"):
