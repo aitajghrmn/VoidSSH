@@ -17,7 +17,7 @@ services:
     build: ./backend
     environment:
       FLASK_ENV: ${FLASK_ENV:-production}
-      DATABASE_URL: postgresql://${POSTGRES_USER:-voidssh}:${POSTGRES_PASSWORD:-changeme}@db:5432/${POSTGRES_DB:-voidssh}
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-voidssh}:${POSTGRES_PASSWORD:-changeme}@db:5432/${POSTGRES_DB:-voidssh}
       SECRET_KEY: ${SECRET_KEY:-insecure-dev-secret-change-me}
       ENCRYPTION_KEY: ${ENCRYPTION_KEY:-insecure-dev-encryption-key-change-me}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
