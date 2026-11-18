@@ -19,6 +19,16 @@ interface ApiErrorBody {
 
 const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS', undefined])
 
+// Token received from the backend in the X-CSRF-Token response header.
+// Needed when frontend and backend are on different domains, where the
+// csrf_token cookie cannot be read from JavaScript.
+let csrfToken: string | null = null
+
+function updateCsrfToken(response: Response) {
+  const token = response.headers.get('X-CSRF-Token')
+  if (token) csrfToken = token
+}
+
 function readCookie(name: string): string | null {
   const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
   return match ? decodeURIComponent(match[1]) : null
@@ -35,8 +45,8 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   }
 
   if (!SAFE_METHODS.has(options.method?.toUpperCase())) {
-    const csrfToken = readCookie('csrf_token')
-    if (csrfToken) headers['X-CSRF-Token'] = csrfToken
+    const token = csrfToken ?? readCookie('csrf_token')
+    if (token) headers['X-CSRF-Token'] = token
   }
 
   const response = await fetch(`${API_URL}${path}`, {
@@ -44,6 +54,8 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     headers,
     ...options,
   })
+
+  updateCsrfToken(response)
 
   const isJson = response.headers.get('content-type')?.includes('application/json')
   const body = isJson ? await response.json() : null
