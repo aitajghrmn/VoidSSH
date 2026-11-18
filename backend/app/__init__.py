@@ -15,6 +15,7 @@ def create_app(config_object=None):
         supports_credentials=True,
         origins=app.config["CORS_ORIGINS"],
         allow_headers=["Content-Type", CSRF_HEADER_NAME],
+        expose_headers=[CSRF_HEADER_NAME],
     )
 
     db.init_app(app)
