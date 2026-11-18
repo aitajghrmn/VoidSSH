@@ -48,8 +48,11 @@ def register_csrf_protection(app):
 
     @app.after_request
     def _csrf_cookie(response):
-        token = getattr(g, "csrf_token", None)
+        token = session.get("csrf_token") or getattr(g, "csrf_token", None)
         if token:
+            # A frontend on another domain cannot read this backend's
+            # cookie, but it can read an exposed response header.
+            response.headers[CSRF_HEADER_NAME] = token
             response.set_cookie(
                 CSRF_COOKIE_NAME,
                 token,
